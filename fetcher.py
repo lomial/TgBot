@@ -21,8 +21,8 @@ def connect(debug,running,interval):
         time.sleep(interval)
 
         try:
-            logging.info("Fetching data")
-            resp = requests.get('{}/Api/GetNodesData?page=1&limit=100'.format(config.networkurl))
+            #logging.info("Fetching data")
+            resp = requests.get('{}/Api/GetNodesData?page=1&limit=10'.format(config.networkurl))
             jsonStr = resp.text
             json_data = json.loads(jsonStr)
             onlinecount = json_data["onlineCount"]
@@ -38,13 +38,13 @@ def connect(debug,running,interval):
         except Exception as E:
             logging.info('Error : {}'.format(E)) 
             
-    #return onlinecount
+    return onlinecount
 
 def getlastpage():
     global lastpage1
     try:
         logging.info("Fetching lastpageid")
-        resp = requests.get('{}/Api/GetNodesData?page=1&limit=100'.format(config.networkurl))
+        resp = requests.get('{}/Api/GetNodesData?page=1&limit=10'.format(config.networkurl))
         jsonStr = resp.text
         json_data = json.loads(jsonStr)
         lastpage1 = json_data["lastPage"]
@@ -58,7 +58,7 @@ def getdata(pagenumber):
     global datavalue
     try:
         logging.info("Fetching all nodes")
-        resp = requests.get('{}/Api/GetNodesData?page={}&limit=100'.format(config.networkurl,pagenumber))
+        resp = requests.get('{}/Api/GetNodesData?page={}&limit=10'.format(config.networkurl,pagenumber))
         jsonStr = resp.text
         json_data = json.loads(jsonStr)
         datavalue = json_data["nodes"]
@@ -67,11 +67,3 @@ def getdata(pagenumber):
 
     except Exception as E:
         logging.info('Error : {}'.format(E))    
-
-
-
-    
-
-
-
-     

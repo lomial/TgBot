@@ -37,7 +37,7 @@ def help(update, context):
     bot.send_message(chat_id=userid, text='''
 Information regarding SWT Node update Bot
 
-Version : 0.1
+Version : {}
 
 Current functions of the SWT Bot:
 
@@ -740,12 +740,12 @@ def main():
   
 
 
-    #bot.send_message(chat_id=chatid, text="System booting up")
+    bot.send_message(chat_id=chatid, text="System booting up")
     
     
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
     # start_polling() is non-blocking and will stop the bot gracefully.
-    updater.idle()
+    #updater.idle()
  

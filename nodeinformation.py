@@ -50,12 +50,12 @@ def consensus(publickey):
         jsonStr = resp.text
         balance = json.loads(jsonStr)
         logging.info(balance)
-        if balance > 50000:
+        if balance > 500000:
             balanceconsensus = True
             logging.info("Enough coins for entering consensus")
             return balanceconsensus
 
-        if balance < 50000:
+        if balance < 500000:
             balanceconsensus = False
             logging.info("Not enough coins for entering consensus")
             return balanceconsensus

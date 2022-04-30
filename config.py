@@ -11,11 +11,11 @@ token = "1174119629:AAHQKxdoNIjs_zonL5wgV6y8jzfPwBVVnds"
 
 #Telegram Chatid 
 
-chatid = 1958217464
+chatid = -1001794249068
 
 #Telegram backend messages for person running the bot 
 
-chatiddev = 1958217464
+chatiddev = -1001794249068
 
 #operational parameters
 refreshinterval = 1

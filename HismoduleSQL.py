@@ -7,10 +7,11 @@ import telegramclient
 import datetime
 from decimal import *
 import decimal
+import time
 from datetime import datetime, timedelta
 from time import gmtime, strftime 
-#logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    #level=logging.INFO)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
  
 getcontext().prec =14
 
@@ -129,7 +130,7 @@ def checktrust(var2,debug):
     conn = create_connection(database)
     cur = conn.cursor()
     if debug:
-        logging.info("checking db for trust status")
+        logging.info("checking db for trust status_1")
     cur.execute("SELECT * FROM SWThistory WHERE publickey=? ORDER BY storetime DESC LIMIT 1",var1)
     data2 = cur.fetchone()
     data = data2[7]
@@ -160,7 +161,7 @@ def checklasttrust(var2,debug,hours,minutes):
         stringsql1 = "SELECT * FROM SWThistory WHERE publickey='{}' AND storetime BETWEEN '{}' AND '{}' ORDER BY storetime ASC LIMIT 1".format(var1,vartime,nowtime)
         stringsql2 = "SELECT * FROM SWThistory WHERE publickey='{}' AND storetime BETWEEN '{}' AND '{}' ORDER BY storetime DESC LIMIT 1".format(var1,vartime,nowtime)
         if debug:
-            logging.info("checking db for trust status")
+            logging.info("checking db for trust status_2")
         cur.execute(stringsql1)
         datavallow = cur.fetchone()
         cur.execute(stringsql2)
@@ -191,6 +192,7 @@ def checklasttrust(var2,debug,hours,minutes):
         logging.info('Error : {}'.format(E))  
 
 def singlewrite(var1):
+    
     vartime = datetime.today() 
     vartime.strftime("%Y-%m-%d %H:%M:%S")
     conn = create_connection(database)
@@ -198,7 +200,8 @@ def singlewrite(var1):
         lastid()
         idval = int(idvalue) 
         idval = idval + 1
-
+        
+        
         ni = var1
         logging.info(ni)
         logging.info(idval)
@@ -319,7 +322,7 @@ def checklasttrusttop(var2,debug,hours,minutes):
         stringsql1 = "SELECT * FROM SWThistory WHERE publickey='{}' AND storetime BETWEEN '{}' AND '{}' ORDER BY storetime ASC LIMIT 1".format(var1,vartime,nowtime)
         stringsql2 = "SELECT * FROM SWThistory WHERE publickey='{}' AND storetime BETWEEN '{}' AND '{}' ORDER BY storetime DESC LIMIT 1".format(var1,vartime,nowtime)
         if debug:
-            logging.info("checking db for trust status")
+            logging.info("checking db for trust status_3")
         cur.execute(stringsql1)
         datavallow = cur.fetchone()
         cur.execute(stringsql2)

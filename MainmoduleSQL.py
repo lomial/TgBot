@@ -4,6 +4,7 @@ import logging
 import json
 import requests
 import telegramclient
+import time
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -153,10 +154,15 @@ def checkifpresentuser(publickey):
     conn = create_connection(database)
     cur = conn.cursor()
     key = (publickey,)
+    logging.info("publickey=")
+    logging.info(publickey)
     if debug:
         logging.info("Checking key")
     cur.execute("SELECT * FROM SWTuser WHERE publickey=? ",key)
     data = cur.fetchone()
+    logging.info("datauserchek=")
+    logging.info(data)
+    
     try:
         if data == None:
             usernode = False
@@ -170,15 +176,21 @@ def checkifpresentuser(publickey):
             runningdata = cur.fetchone()
             runningstatus = runningdata[2]
             chatidvar = runningdata[0]
+            logging.info("data=!= None") 
             if debug:
                 logging.info("Key found")
                 logging.info("Returning value")
-            if runningstatus == "1":
+            if runningstatus == 1:
                 usernode = True
+                logging.info("usernode=")    
+                logging.info(usernode)
 
-            if runningstatus == "0":
-                usernode = True    
-
+            if runningstatus == 0:
+                usernode = True  
+                logging.info("usernode=")    
+                logging.info(usernode)  
+            #logging.info(key)      
+            
     except Exception as E:
         logging.info('Error : {}'.format(E))
 
@@ -206,7 +218,9 @@ def checkifrunning(var2,debug):
         elif data == "1":
             #logging.info("Node is running with publickey: {}".format(pkey))
             runningvalue = 1
-
+        #logging.info(var1)      
+        #logging.info("runningvalue=")    
+        #logging.info(runningvalue)
     except Exception as E:
         logging.info('Error : {}'.format(E))    
 
@@ -218,7 +232,7 @@ def singlewrite(var1):
         lastid()
         idval = int(idvalue) 
         idval = idval + 1
-
+        
         ni = var1
         logging.info(ni)
         logging.info(idval)
@@ -418,9 +432,36 @@ def fetch_user_nodes(chatid):
     except Exception as E:
         logging.info('Error : {}'.format(E))
 
-
-
-
+def getdatauser():
+    
+    conn = create_connection(database)
+    cur = conn.cursor()
+    try:
+        cur.execute("SELECT * FROM SWTmain")
+        datasql = cur.fetchall()
+        #logging.info("datasql")
+        #logging.info(datasql)   
+        return datasql
+    
+    except Exception as E:
+        logging.info('Error : {}'.format(E))
+    
+        
+def getcountuser():
+    
+    conn = create_connection(database)
+    cur = conn.cursor()
+    try:
+        cur.execute("SELECT COUNT (*) FROM SWTmain")
+        countuser = cur.fetchone()
+        #logging.info("countuser")
+        #logging.info(countuser)
+        return countuser
+    
+    except Exception as E:
+        logging.info('Error : {}'.format(E))
+    
+    
 tablewrite()
 tablewriteuser()
 tablewritehourly()

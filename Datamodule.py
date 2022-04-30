@@ -20,7 +20,7 @@ def fetch():
         try:
             
             logging.info("Retrieving pages")
-            resp = requests.get('{}/Api/GetNodesData?page={}&limit=100'.format(config.networkurl,test))
+            resp = requests.get('{}/Api/GetNodesData?page={}&limit=10'.format(config.networkurl,test))
             jsonStr = resp.text
             json_data = json.loads(jsonStr)
             storedata = json_data["nodes"]
@@ -48,7 +48,7 @@ def fetch2():
 
             if checkpage < maxpage:
                 logging.info("Retrieving pages")
-                resp = requests.get('{}/Api/GetNodesData?page={}&limit=100'.format(config.networkurl,pagenumber))
+                resp = requests.get('{}/Api/GetNodesData?page={}&limit=10'.format(config.networkurl,pagenumber))
                 jsonStr = resp.text
                 json_data = json.loads(jsonStr)
                 storedata = json_data["nodes"]

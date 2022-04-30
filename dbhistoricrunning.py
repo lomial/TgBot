@@ -4,7 +4,7 @@ import sqlite3
 import HismoduleSQL
 import logging
 import time
-import Datamodule
+import Datamodule 
 import fetcher
 import telegramclient
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -18,13 +18,16 @@ def main(interval,debug):
     fetcher.getlastpage()
 
     while running:
-        time.sleep(1.1)
-
+        time.sleep(interval)
+        
         def check():
             global variable
             fetcher.getdata(variable)
             datafetch = fetcher.datavalue 
+            #logging.info("variable=")
+            #logging.info(variable)
             variable = variable + 1
+            
             for loadsql in datafetch:
             
                 try:
@@ -76,14 +79,18 @@ def main(interval,debug):
                 except Exception as E:
                     logging.info('Error : {}'.format(E)) 
         if variable < fetcher.lastpage1:
-            logging.info("Going to next page")
+            if debug:
+                logging.info("Going to next page")
             check()
             
         if variable == fetcher.lastpage1:
-            logging.info("reached max page Starting at page 1")
-            variable = 1 
-            time.sleep(2)
-            check()           
-
+            if debug:
+                logging.info("reached max page Starting at page 1")
+            time.sleep(2)   
+            check() 
+            variable = 1        
+        if variable > fetcher.lastpage1:
+            if debug:
+                logging.info("test")
 #main(1,True)
 

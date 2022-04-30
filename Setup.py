@@ -13,6 +13,7 @@ import dbrunning
 import config
 import dbhistoricrunning
 import swtoprunning,swthourmodule
+import notifetch
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(threadName)-12.12s',level=logging.INFO)
@@ -49,7 +50,10 @@ if __name__ == "__main__":
     t3 = threading.Thread(target=telegramclient.main,)
     logging.debug("Setting Thread Telegramclient")
 
-    t4 = threading.Thread(target=dbrunning.main, args=(interval,debug))
+    t4 = threading.Thread(target=notifetch.main, args=(interval,debug))
+    logging.debug("Setting Thread Notifier")
+    
+    #t4 = threading.Thread(target=dbrunning.main, args=(interval,debug))
     logging.debug("Setting Thread Notifier")
 
     #t5 = threading.Thread(target=Blocknotifier.blockchecker, args=(interval,debug))
