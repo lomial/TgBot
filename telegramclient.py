@@ -43,7 +43,7 @@ Current functions of the SWT Bot:
 
 The Bot sends messages to the Technical chat of SWT when Nodes are going offline or online
 
-/start function allocated to the bot developer
+/start to get started
 
 /help Displays all bot functions, you are getting this message
 
@@ -74,8 +74,6 @@ The Bot sends messages to the Technical chat of SWT when Nodes are going offline
 /top10last24h This functions show best performing nodes last 24H
 
 /top10last24hstake This functions show best performing nodes last 24H with staking
-
-/status This function shows module status of the bot
 
 /mynodes This function shows which nodes are stored in hourly notifications
 
@@ -120,7 +118,7 @@ Version {}
 
 def start(update, context):
     """Send a message when the command /start is issued."""
-    update.message.reply_text('bot already started')
+    update.message.reply_text('bot is already running, command list /help')
 
 
 def public(update, context):
@@ -159,8 +157,6 @@ def public(update, context):
         update.message.reply_text('''
 Total information of node
 Public key: {}
-Country: {}
-City: {}
 Total fee earned {}
 Trust count till now {}
 Blocks written {}
@@ -170,7 +166,7 @@ Trust count last 24H: {}
 Total fee last 24H {}
 Written block ratio: {}
 Staked amount is: {}
-        '''.format(public_key,country,city,totalfee,trustcount,timeswritter,active,consensus_data,last_trust,last_fee,writeratio,staked))
+        '''.format(public_key,totalfee,trustcount,timeswritter,active,consensus_data,last_trust,last_fee,writeratio,staked))
 
     return ConversationHandler.END
 def notion(update, context):
@@ -233,9 +229,8 @@ def bestnode(update, context):
 Count={}
 TotalFee={}
 Public={} 
-Country={}
 Staked={}
-'''.format(n1[0],total_fee,p1,n1[2],balance))
+'''.format(n1[0],total_fee,p1,balance))
 
 def worstnode(update, context):
     """Send a message when the command /start is issued."""

@@ -91,6 +91,6 @@ def main(interval,debug):
             variable = 1        
         if variable > fetcher.lastpage1:
             if debug:
-                logging.info("test")
+                logging.info("Error")
 #main(1,True)
 

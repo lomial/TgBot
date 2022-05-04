@@ -154,14 +154,14 @@ def checkifpresentuser(publickey):
     conn = create_connection(database)
     cur = conn.cursor()
     key = (publickey,)
-    logging.info("publickey=")
-    logging.info(publickey)
+    #logging.info("publickey=")
+    #logging.info(publickey)
     if debug:
         logging.info("Checking key")
     cur.execute("SELECT * FROM SWTuser WHERE publickey=? ",key)
     data = cur.fetchone()
-    logging.info("datauserchek=")
-    logging.info(data)
+    #logging.info("datauserchek=")
+    #logging.info(data)
     
     try:
         if data == None:
@@ -176,19 +176,18 @@ def checkifpresentuser(publickey):
             runningdata = cur.fetchone()
             runningstatus = runningdata[2]
             chatidvar = runningdata[0]
-            logging.info("data=!= None") 
             if debug:
                 logging.info("Key found")
                 logging.info("Returning value")
             if runningstatus == 1:
                 usernode = True
-                logging.info("usernode=")    
-                logging.info(usernode)
+                #logging.info("usernode=")    
+                #logging.info(usernode)
 
             if runningstatus == 0:
                 usernode = True  
-                logging.info("usernode=")    
-                logging.info(usernode)  
+                #logging.info("usernode=")    
+                #logging.info(usernode)  
             #logging.info(key)      
             
     except Exception as E:
