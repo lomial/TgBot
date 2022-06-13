@@ -308,7 +308,9 @@ Module 6 is running: {}
 Module 7 is running: {}
 Module 8 is running: {}
 Module 9 is running: {}
-    """.format(x1,x2,x3,x4,x6,x7,x8,x9))
+Module 10 is running: {}
+Module 11 is running: {}
+    """.format(x1,x2,x3,x4,x6,x7,x8,x9))#,x10,x11))
 
 x1 = False 
 x2 = False
@@ -318,7 +320,8 @@ x6 = False
 x7 = False
 x8 = False
 x9 = False
-
+x10 = False
+x11 = False
 
 #---------------------------------------------------------------------------
 

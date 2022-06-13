@@ -10,9 +10,12 @@ import Blocknotifier
 import Blockchain
 import signal,sys
 import dbrunning
-import config
+import dbhistorywrite 
 import dbhistoricrunning
+import config
 import swtoprunning,swthourmodule
+import clearolddbstring
+
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(threadName)-12.12s',level=logging.INFO)
@@ -66,6 +69,12 @@ if __name__ == "__main__":
 
     t9 = threading.Thread(target=swthourmodule.main)
     logging.debug("Setting hourly module")
+    
+    t10 = threading.Thread(target=dbhistorywrite.main, args=(interval,debug))
+    logging.debug("Setting history module")
+    
+    t11 = threading.Thread(target=clearolddbstring.deleteoldstring, args=(interval,debug))
+    logging.debug("Setting ClearDB module")
 #------
     
     t1.start() 
@@ -92,13 +101,19 @@ if __name__ == "__main__":
     logging.debug("Starting Thread Blockchain")
     
     t7.start()
-    logging.debug("Starting History")
+    logging.debug("Starting HistoryMain")
     
     t8.start()
     logging.debug("Starting top module")
     
     t9.start()
     logging.debug("Starting hourly module")
+      
+    t10.start()
+    logging.debug("Starting History module")
+    
+    t11.start()
+    logging.debug("Starting ClearDB module")
 
 
     x1 = t1.is_alive()
@@ -124,6 +139,12 @@ if __name__ == "__main__":
 
     x9 = t9.is_alive()
     logging.info(x9)
+    
+    x10 = t10.is_alive()
+    logging.info(x10)
+    
+    x11 = t11.is_alive()
+    logging.info(x11)
 
     while True:
         telegramclient.x1 = x1
@@ -134,6 +155,8 @@ if __name__ == "__main__":
         telegramclient.x7 = x7
         telegramclient.x8 = x8
         telegramclient.x9 = x9
+        telegramclient.x10 = x10
+        telegramclient.x11 = x11
 
         time.sleep(100)
         if x1 == False:
@@ -165,5 +188,13 @@ if __name__ == "__main__":
             t8.start()
 
         if x9 == False:
-            telegramclient.module_error("Module 8")
+            telegramclient.module_error("Module 9")
             t9.start()    
+        
+        if x10 == False:
+            telegramclient.module_error("Module 10")
+            t10.start()   
+            
+        if x11 == False:
+            telegramclient.module_error("Module 11")
+            t11.start()   

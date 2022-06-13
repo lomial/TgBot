@@ -128,6 +128,8 @@ def checkifpresent(publickey,debug):
         logging.info("Checking key")
     cur.execute("SELECT * FROM SWTmain WHERE publickey=? ",key)
     data = cur.fetchone()
+    #logging.info("data=")
+    #logging.info(data)
     try:
         if data == None:
             if debug:
@@ -136,6 +138,8 @@ def checkifpresent(publickey,debug):
             return False    
         elif data != None:
             if debug:
+                logging.info("data=")
+                logging.info(data)
                 logging.info("Key found")
                 logging.info("Returning value")
             return True
@@ -453,8 +457,8 @@ def getcountuser():
     try:
         cur.execute("SELECT COUNT (*) FROM SWTmain")
         countuser = cur.fetchone()
-        #logging.info("countuser")
-        #logging.info(countuser)
+        logging.info("countuser")
+        logging.info(countuser)
         return countuser
     
     except Exception as E:
