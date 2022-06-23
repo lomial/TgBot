@@ -38,7 +38,7 @@ def main(interval,debug):
                 logging.info(datasql)
             
             
-            for i in range(countuser+1):
+            for i in range(countuser):
                 #print ("i=",i)
                 try:
                     time.sleep(0)
@@ -100,14 +100,14 @@ def main(interval,debug):
                 except Exception as E:
                     logging.info('Error : {}'.format(E)) 
                     
-        if variable < countuser+1:
+        if variable < countuser:
             logging.info("Going to next str")
             time.sleep(2)
             variable = variable + 1
             check()
             
             
-        if variable == countuser+1:
+        if variable == countuser:
             logging.info("reached max srt Starting at str 1")
             time.sleep(2)
             variable = 0
