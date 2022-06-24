@@ -27,6 +27,7 @@ def main(interval,debug):
         
         def check():        
             global variable
+            global keyretrieve
             countuser = sum(MainmoduleSQL.getcountuser())
             #logging.info("countuser")
             #logging.info(countuser)     
@@ -40,6 +41,8 @@ def main(interval,debug):
             
             for i in range(countuser):
                 #print ("i=",i)
+                logging.info("i=")
+                logging.info(i)
                 try:
                     time.sleep(0)
                     keyretrieve = functools.reduce(operator.add, (datasql[i][2]))
@@ -57,10 +60,10 @@ def main(interval,debug):
                         logging.info(MainmoduleSQL.checkifpresent)
                         
                     try:
-                        logging.info("keyretrieve")
-                        logging.info(MainmoduleSQL.runningvalue)
-                        logging.info("activestatus")
-                        logging.info(activestatus)
+                        #logging.info("keyretrieve")
+                        #logging.info(MainmoduleSQL.runningvalue)
+                        #logging.info("activestatus")
+                        #logging.info(activestatus)
                         onlinenodedata = nodeinformation.getnodeinformation(keyretrieve) 
                             
                             
