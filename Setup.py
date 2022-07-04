@@ -1,4 +1,5 @@
 
+import imp
 import threading 
 import fetcher
 import Debug
@@ -15,6 +16,7 @@ import dbhistoricrunning
 import config
 import swtoprunning,swthourmodule
 import clearolddbstring
+import checkblock
 
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
@@ -75,6 +77,9 @@ if __name__ == "__main__":
     
     t11 = threading.Thread(target=clearolddbstring.deleteoldstring, args=(interval,debug))
     logging.debug("Setting ClearDB module")
+    
+    t12 = threading.Thread(target=checkblock.check)
+    logging.debug("Setting ClearDB module")
 #------
     
     t1.start() 
@@ -114,6 +119,9 @@ if __name__ == "__main__":
     
     t11.start()
     logging.debug("Starting ClearDB module")
+    
+    t12.start()
+    logging.debug("Starting Checkblock module")
 
 
     x1 = t1.is_alive()
@@ -145,6 +153,9 @@ if __name__ == "__main__":
     
     x11 = t11.is_alive()
     logging.info(x11)
+    
+    x12 = t12.is_alive()
+    logging.info(x12)
 
     while True:
         telegramclient.x1 = x1
@@ -157,6 +168,7 @@ if __name__ == "__main__":
         telegramclient.x9 = x9
         telegramclient.x10 = x10
         telegramclient.x11 = x11
+        telegramclient.x12 = x12
 
         time.sleep(100)
         if x1 == False:
@@ -198,3 +210,7 @@ if __name__ == "__main__":
         if x11 == False:
             telegramclient.module_error("Module 11")
             t11.start()   
+            
+        if x12 == False:
+            telegramclient.module_error("Module 12")
+            t12.start()   

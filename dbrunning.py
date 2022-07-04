@@ -34,42 +34,12 @@ def main(interval,debug):
                 try:
                     time.sleep(0)
                     keyretrieve = loadsql["publicKey"]
-                    activestatus = loadsql["active"]
                     if debug:
                         logging.info("key is send to module")
                         #logging.info(MainmoduleSQL.checkifpresent)
                     if MainmoduleSQL.checkifpresent(keyretrieve,debug) == True:
                         if debug:
-                            logging.info("Key already in db")
-                            logging.info("Trying if node value is changed")
-                        MainmoduleSQL.checkifrunning(keyretrieve,debug)
-                        MainmoduleSQL.checkifpresentuser(keyretrieve)
-                        try:
-                            #logging.info(MainmoduleSQL.runningvalue)
-                            #logging.info(activestatus)
-                            if activestatus > MainmoduleSQL.runningvalue:
-                                
-                                if debug:
-                                    logging.info("node is up")
-                                MainmoduleSQL.updatestatus(keyretrieve,activestatus)
-                                telegramclient.up(keyretrieve)
-                                if MainmoduleSQL.usernode == True:
-                                    telegramclient.userup(MainmoduleSQL.chatidvar,keyretrieve)
-                        
-                            if activestatus < MainmoduleSQL.runningvalue:
-                                
-                                if debug:
-                                    logging.info("node is down")  
-                                MainmoduleSQL.updatestatus(keyretrieve,activestatus)
-                                telegramclient.down(keyretrieve)
-                                if MainmoduleSQL.usernode == True:
-                                    telegramclient.userdown(MainmoduleSQL.chatidvar,keyretrieve) 
-                            else:
-                                if debug:
-                                    logging.info("nothing changed") 
-                                
-                        except Exception as E:
-                            logging.info('Error : {}'.format(E))     
+                            logging.info("Key stored in db")
                
 
 

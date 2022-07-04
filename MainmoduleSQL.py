@@ -138,8 +138,8 @@ def checkifpresent(publickey,debug):
             return False    
         elif data != None:
             if debug:
-                logging.info("data=")
-                logging.info(data)
+                #logging.info("data=")
+                #logging.info(data)
                 logging.info("Key found")
                 logging.info("Returning value")
             return True

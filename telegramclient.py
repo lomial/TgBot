@@ -297,6 +297,9 @@ def monitordown():
 def dev():
     bot.send_message(chat_id=chatid, text=" Change detected storing data[NEW] ")
 
+def checkblock(lastblock):
+     bot.send_message(chat_id=chatid, text="!!! WARNING BLOCKCHAIN STOPPED !!! LASTBLOCK:{}".format(lastblock))
+
 def status(update, context):
     update.message.reply_text("""
     Bot running Status:
@@ -322,6 +325,9 @@ x8 = False
 x9 = False
 x10 = False
 x11 = False
+x12 = False
+
+
 
 #---------------------------------------------------------------------------
 
@@ -681,6 +687,8 @@ def my_nodestats(update, context):
     userid = uservar["id"]
     bot.send_message(chat_id=chatiddev, text="Mynodes requested")
     swthourmodule.singlesend(userid)
+
+
 
 #--------------------------------------------------
 
