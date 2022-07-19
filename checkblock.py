@@ -13,9 +13,9 @@ chatiddev = config.chatiddev
 def check():
     time_reg = datetime.today()
     while running:
-        time.sleep(10)
-        lastblock_reg = Blockchain.lastblock
         
+        lastblock_reg = Blockchain.lastblock
+        time.sleep(10)
         
         logging.info("lastblock:")
         logging.info(lastblock_reg)
