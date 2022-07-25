@@ -297,8 +297,15 @@ def monitordown():
 def dev():
     bot.send_message(chat_id=chatid, text=" Change detected storing data[NEW] ")
 
+#---------------------------------------------------------------------------
+
 def checkblock(lastblock):
      bot.send_message(chat_id=chatid, text="!!! WARNING BLOCKCHAIN STOPPED !!! LASTBLOCK:{}".format(lastblock))
+     
+def blockchainerror():
+     bot.send_message(chat_id=chatid, text="Blockchain module error")
+
+#---------------------------------------------------------------------------
 
 def status(update, context):
     update.message.reply_text("""

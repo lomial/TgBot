@@ -23,7 +23,7 @@ def check():
         logging.info("time_reg:")
         logging.info(time_reg)
     
-        if time_reg < datetime.today() - timedelta(minutes=5):
+        if time_reg < datetime.today() - timedelta(minutes=10):
             
             logging.info("time_reg:")
             logging.info(time_reg)

@@ -2,6 +2,7 @@ import logging
 import time
 import json
 import requests
+import telegramclient
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
@@ -31,6 +32,7 @@ def blockchain(debug,running,interval):
 
         except Exception:
             logging.error ("Major notifier error")
+            telegramclient.blockchainerror()
             raise    
          
     
