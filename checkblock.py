@@ -15,7 +15,7 @@ def check():
     while running:
         
         lastblock_reg = Blockchain.lastblock
-        time.sleep(10)
+        time.sleep(120)
         
         logging.info("lastblock:")
         logging.info(lastblock_reg)
