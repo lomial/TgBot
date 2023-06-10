@@ -14,7 +14,7 @@ import MainmoduleSQL
 import HismoduleSQL
 import swthourmodule
 
-version = "0.6"
+version = "0.7"
 
 Succes = "the message is successfully sended"
 token = Setup.setuptoken

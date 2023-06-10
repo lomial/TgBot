@@ -10,7 +10,7 @@ import telegramclient
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 running = True
-debug = True
+debug = False
 
 def main(interval,debug):
     global variable
