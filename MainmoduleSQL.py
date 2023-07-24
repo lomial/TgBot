@@ -463,6 +463,32 @@ def getcountuser():
     
     except Exception as E:
         logging.info('Error : {}'.format(E))
+        
+def offline_nodes():
+    conn = create_connection(database)
+    cur = conn.cursor()
+    try:
+        cur.execute("SELECT * FROM SWTmain WHERE `active` = 0;")
+        data2 = cur.fetchall()
+        #logging.info("off_data")
+        #logging.info(data2)
+        return data2
+        
+    except Exception as E:
+        logging.info('Error : {}'.format(E))
+        
+def count_offline_nodes():
+    conn = create_connection(database)
+    cur = conn.cursor()
+    try:
+        cur.execute("SELECT COUNT (*) FROM SWTmain WHERE `active` = 0;")
+        count_off_node = int(cur.fetchall()[0][0])
+        #logging.info("count_off_node")
+        #logging.info(count_off_node)
+        return count_off_node
+        
+    except Exception as E:
+        logging.info('Error : {}'.format(E))
     
     
 tablewrite()

@@ -304,6 +304,24 @@ def checkblock(lastblock):
      
 def blockchainerror():
      bot.send_message(chat_id=chatid, text="Blockchain module error")
+  
+#---------------------------------------------------------------------------
+  
+def offline_nodes_list(update, context):
+    data = MainmoduleSQL.offline_nodes()
+    count = MainmoduleSQL.count_offline_nodes()
+    
+    #count_int= int(count[0])
+    update.message.reply_text("""
+    Offline nodes:{}
+    """.format(count))
+    for i in range(count):
+        update.message.reply_text("""
+        Node {}: {}
+        """.format(i+1, data[i][2]))
+        logging.info("i=")
+        logging.info(i)
+        
 
 #---------------------------------------------------------------------------
 
@@ -616,7 +634,10 @@ Staked={}
 n10 Count={} Public={} Country={} 
 Staked={}
     '''.format(n1[0], p1, n1[2], p1_balance, n2[0], p2, n2[2], p2_balance, n3[0], p3, n3[2], p3_balance, n4[0], p4, n4[2], p4_balance, n5[0], p5, n5[2], p5_balance, n6[0], p6, n6[2], p6_balance, n7[0], p7, n7[2], p7_balance, n8[0], p8, n8[2], p8_balance, n9[0], p9, n9[2], p9_balance, n10[0], p10, n10[2], p10_balance))
-        
+
+    
+
+
 #-------------------------=hourly=------------------
 def hour_off(update, context):
     uservar = update.message.from_user
@@ -735,6 +756,7 @@ def main():
     dp.add_handler(CommandHandler("status", status))
     dp.add_handler(CommandHandler("mynodes", my_nodes))
     dp.add_handler(CommandHandler("mynodestats", my_nodestats))
+    dp.add_handler(CommandHandler("off_list", offline_nodes_list))
     # on noncommand i.e message - echo the message on Telegram
     #dp.add_handler(MessageHandler(Filters.text, echo))
 
