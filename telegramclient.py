@@ -53,6 +53,8 @@ The Bot sends messages to the Technical chat of SWT when Nodes are going offline
 
 /offlinenode Shows you the amount of Offline Nodes at this moment in time
 
+/off_list Shows Shows the number of offline nodes and their addresses at a given time
+
 /totalnodes The number of registered Nodes running the SWT Blockchain
 
 /lastblock Displays the latest block of the SWT public Blockchain with the number of transactions
