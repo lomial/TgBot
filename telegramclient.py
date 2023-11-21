@@ -267,7 +267,7 @@ def down(keyreg):
         varcons = "Yes"
     if nodeinformation.consensus(keyreg) == False:
         varcons = "No" 
-    bot.send_message(chat_id=chatid, text="Node went Offline[{}] Key: {} Running consensus: {}".format(fetcher.onlinecount,MainmoduleSQL.pkey,varcons))
+    bot.send_message(chat_id=chatid, text="🆘*Node went Offline[{}]*🆘 Key: {} Running consensus: {}".format(fetcher.onlinecount,MainmoduleSQL.pkey,varcons), parse_mode="Markdown")
 
 def addkey(keyreg):
     if nodeinformation.consensus(keyreg) == True:
@@ -285,7 +285,7 @@ def up(keyreg):
         varcons = "Yes"
     if nodeinformation.consensus(keyreg) == False:
         varcons = "No" 
-    bot.send_message(chat_id=chatid, text="Node went Online[{}] Key: {} Enough balance for running consensus: {}".format(fetcher.onlinecount,MainmoduleSQL.pkey,varcons))
+    bot.send_message(chat_id=chatid, text="✅*Node went Online[{}]*✅ Key: {} Enough balance for running consensus: {}".format(fetcher.onlinecount,MainmoduleSQL.pkey,varcons), parse_mode="Markdown")
 
 def newblock():
     bot.send_message(chat_id=chatid, text="Block :{} Created with {} ".format(Blockchain.lastblock,Blockchain.lastblocktx))
